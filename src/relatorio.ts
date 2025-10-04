@@ -5,58 +5,43 @@ import Peca from "./pecas";
 import Funcionario from "./funcionario";
 
 export default class Relatorio {
-    private aeronave: Aeronave;
-    private cliente: string;
-    private dataEntrega: Date;
-    private etapas: Etapa[];
-    private testes: Teste[];
-    private pecasUtilizadas: Peca[];
-    private responsavel: Funcionario;
-
     constructor(
-        aeronave: Aeronave,
-        cliente: string,
-        dataEntrega: Date,
-        etapas: Etapa[],
-        testes: Teste[],
-        pecasUtilizadas: Peca[],
-        responsavel: Funcionario
-    ) {
-        this.aeronave = aeronave;
-        this.cliente = cliente;
-        this.dataEntrega = dataEntrega;
-        this.etapas = etapas;
-        this.testes = testes;
-        this.pecasUtilizadas = pecasUtilizadas;
-        this.responsavel = responsavel;
-    }
+        private aeronave: Aeronave,
+        private cliente: string,
+        private dataEntrega: Date,
+        private etapas: Etapa[],
+        private testes: Teste[],
+        private pecasUtilizadas: Peca[],
+        private responsavel: Funcionario
+    ) {}
 
     public gerarRelatorioCompleto() {
-        console.log("--------------------- Relatorio -------------------------------------");
-        console.log(`Aeronave: ${this.aeronave.value}`);
-        console.log(`Cliente: ${this.cliente}`);
-        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}`);
-        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})`);
+        console.log("--------------------- Relatório -------------------------------------\n");
+        console.log(`Aeronave: ${this.aeronave.getDetalhes()}\n`);
+        console.log(`Cliente: ${this.cliente}\n`);
+        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}\n`);
+        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n`);
 
         console.log("Etapas de Produção:");
-        for (const p of this.etapas) {
-            console.log(`${p.nome} Prazo: ${p.prazo} dias Status: ${p.status}`);
+        for (const etapa of this.etapas) {
+            console.log(`${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n`);
         }
 
         console.log("Peças Utilizadas:");
         for (const peca of this.pecasUtilizadas) {
-            console.log(`${peca.getNome()} Tipo: ${peca.getTipo()} Fornecedor: ${peca.getFornecedor()} Status: ${peca.getStatus()}`);
+            console.log(`${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n`);
         }
 
         console.log("Testes Realizados:");
-        for (const t of this.testes) {
-            console.log(`Tipo: ${t.getTesteTipo()} Resultado: ${t.getResultado()}`);
+        for (const teste of this.testes) {
+            // CORREÇÃO: Usando getTipo() e getResultado()
+            console.log(`Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n`);
         }
 
         console.log(`Gerado em: ${new Date().toLocaleDateString()}`);
     }
 
     public getResumo(): string {
-        return `Aeronave: ${this.aeronave.value} Cliente: ${this.cliente} Entrega: ${this.dataEntrega.toLocaleDateString()} ${this.etapas.length} etapas ${this.testes.length} testes`;
+        return `Aeronave: ${this.aeronave.getDetalhes()}\n Cliente: ${this.cliente} \n Entrega: ${this.dataEntrega.toLocaleDateString()} \n ${this.etapas.length} etapas \n ${this.testes.length} testes`;
     }
 }

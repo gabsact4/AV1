@@ -1,28 +1,34 @@
-import { TipoPeca } from './enums';
+import { TipoPeca, StatusPeca } from './enums';
 
 export default class Peca {
-    private PecasNome: string;
-    private PecasTipo: TipoPeca;
-    private Fornecedro: string;
-    private Status: string;
-    
-    constructor(PecasNome: string, PecasTipo: TipoPeca, Fornecedro: string, Status: string = "Disponível") {
-        this.PecasNome = PecasNome;
-        this.PecasTipo = PecasTipo;
-        this.Fornecedro = Fornecedro;
-        this.Status = Status;
-    } 
+    constructor(
+        private nome: string,
+        private tipo: TipoPeca,
+        private fornecedor: string,
+        private status: StatusPeca = StatusPeca.EM_PRODUCAO
+    ) {}
 
     public getNome(): string {
-         return this.PecasNome; 
-        }
+        return this.nome;
+    }
+
     public getTipo(): TipoPeca {
-         return this.PecasTipo; 
-        }
+        return this.tipo;
+    }
+
     public getFornecedor(): string {
-         return this.Fornecedro; 
-        }
-    public getStatus(): string { 
-        return this.Status; 
+        return this.fornecedor;
+    }
+
+    public getStatus(): StatusPeca {
+        return this.status;
+    }
+
+    public setStatus(status: StatusPeca): void {
+        this.status = status;
+    }
+
+    public registrarPeca(funcionario: any): boolean {
+        return true; 
     }
 }

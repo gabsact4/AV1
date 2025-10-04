@@ -12,7 +12,7 @@ class Aeronave {
         this.alcance = alcance;
     }
     get value() {
-        return `Codigo:${this.codigo}, Modelo: ${this.modelo}, Tipo: ${this.tipo}, Capacidade: ${this.capacidade}, Alcance: ${this.alcance}`;
+        return `\n Codigo:${this.codigo}, Modelo: ${this.modelo}, Tipo: ${this.tipo}, Capacidade: ${this.capacidade}, Alcance: ${this.alcance}`;
     }
     adicionarPeca(peca) {
         this.pecas.push(peca);

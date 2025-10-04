@@ -11,27 +11,36 @@ class Relatorio {
         this.responsavel = responsavel;
     }
     gerarRelatorioCompleto() {
-        console.log("--------------------- Relatorio -------------------------------------");
-        console.log(`Aeronave: ${this.aeronave.value}`);
-        console.log(`Cliente: ${this.cliente}`);
-        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}`);
-        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})`);
+        var _a, _b;
+        console.log("--------------------- Relatorio -------------------------------------\n");
+        console.log(`Aeronave: ${this.aeronave.value}\n`);
+        console.log(`Cliente: ${this.cliente}\n`);
+        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}\n`);
+        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n`);
         console.log("Etapas de Produção:");
         for (const p of this.etapas) {
-            console.log(`${p.nome} Prazo: ${p.prazo} dias Status: ${p.status}`);
+            console.log(`${p.nome} Prazo: ${p.prazo} dias Status: ${p.status}\n`);
         }
         console.log("Peças Utilizadas:");
         for (const peca of this.pecasUtilizadas) {
-            console.log(`${peca.getNome()} Tipo: ${peca.getTipo()} Fornecedor: ${peca.getFornecedor()} Status: ${peca.getStatus()}`);
+            // Adicionado as novas informações de registro da peça
+            const funcRegistro = ((_a = peca.getFuncionarioRegistro()) === null || _a === void 0 ? void 0 : _a.getNome()) || "N/A";
+            const dataRegistro = ((_b = peca.getDataRegistro()) === null || _b === void 0 ? void 0 : _b.toLocaleDateString()) || "N/A";
+            console.log(`
+                ${peca.getNome()} Tipo: ${peca.getTipo()} 
+                Fornecedor: ${peca.getFornecedor()} 
+                Status: ${peca.getStatus()}
+                Registrado por: ${funcRegistro} em: ${dataRegistro}
+            `);
         }
-        console.log("Testes Realizados:");
+        console.log("\nTestes Realizados:");
         for (const t of this.testes) {
-            console.log(`Tipo: ${t.getTesteTipo()} Resultado: ${t.getResultado()}`);
+            console.log(`Tipo: ${t.getTesteTipo()} Resultado: ${t.getResultado()}\n`);
         }
         console.log(`Gerado em: ${new Date().toLocaleDateString()}`);
     }
     getResumo() {
-        return `Aeronave: ${this.aeronave.value} Cliente: ${this.cliente} Entrega: ${this.dataEntrega.toLocaleDateString()} ${this.etapas.length} etapas ${this.testes.length} testes`;
+        return `Aeronave: ${this.aeronave.value}\n Cliente: ${this.cliente} \n Entrega: ${this.dataEntrega.toLocaleDateString()} \n ${this.etapas.length} \n etapas ${this.testes.length} testes`;
     }
 }
 exports.default = Relatorio;

@@ -10,7 +10,7 @@ class Etapa {
     }
     associarFuncionario(funcionario) {
         this.responsavel = funcionario;
-        console.log(`Funcionario ${funcionario.getNome()} associado à etapa ${this.nome}.`);
+        console.log(`\n Funcionario ${funcionario.getNome()} associado à etapa ${this.nome}.`);
     }
     iniciarEtapa() {
         if (this.status === enums_1.StatusEtapa.PENDENTE) {
@@ -24,10 +24,10 @@ class Etapa {
     finalizarEtapa() {
         if (this.status === enums_1.StatusEtapa.ANDAMENTO) {
             this.status = enums_1.StatusEtapa.CONCLUIDA;
-            console.log(`Etapa '${this.nome}' finalizada.`);
+            console.log(`Etapa '${this.nome}' finalizada.\n`);
         }
         else {
-            console.log(`Não é possível finalizar a Etapa '${this.nome}'. Ela não está em andamento.`);
+            console.log(`\n Não é possível finalizar a Etapa '${this.nome}'. Ela não está em andamento.`);
         }
     }
 }

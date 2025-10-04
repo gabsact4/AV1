@@ -1,35 +1,27 @@
-export default class Funcionario {
-    private id: number;
-    private funNome: string;
-    private telefone: number;
-    private endereco: string;
-    private usuario: string;
-    private senha: string;
-    private permicao: string;
+import { NivelPermissao } from './enums';
 
-    constructor(id: number, funNome: string, telefone: number, endereco: string, usuario: string, senha: string, permicao: string) {
-        this.id = id;
-        this.funNome = funNome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.permicao = permicao;
-    }
+export default class Funcionario {
+    constructor(
+        private id: number,
+        private nome: string,
+        private usuario: string,
+        private senha: string,
+        private permissao: NivelPermissao
+    ) {}
 
     public getId(): number {
-         return this.id; 
+        return this.id;
     }
+
     public getNome(): string {
-         return this.funNome; 
+        return this.nome;
     }
-    public getTelefone(): number {
-         return this.telefone; 
+
+    public getPermissao(): NivelPermissao {
+        return this.permissao;
     }
-    public getEndereco(): string {
-         return this.endereco; 
-    }
-    public getPermicao(): string {
-         return this.permicao; 
+
+    public autenticar(usuario: string, senha: string): boolean {
+        return this.usuario === usuario && this.senha === senha;
     }
 }
