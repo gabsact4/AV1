@@ -17,25 +17,25 @@ export default class Relatorio {
     ) {}
 
     public gerarRelatorioCompleto() {
-        let conteudo = "--------------------- Relatório -------------------------------------\n\n";
-        conteudo += `Aeronave: ${this.aeronave.getDetalhes()}\n\n`;
-        conteudo += `Cliente: ${this.cliente}\n\n`;
-        conteudo += `Entrega: ${this.dataEntrega.toLocaleDateString()}\n\n`;
-        conteudo += `Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n\n`;
+        let conteudo = "--------------------- Relatório -------------------------------------\n";
+        conteudo += `Aeronave: ${this.aeronave.getDetalhes()}\n`;
+        conteudo += `Cliente: ${this.cliente}\n`;
+        conteudo += `Entrega: ${this.dataEntrega.toLocaleDateString()}\n`;
+        conteudo += `Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n`;
 
         conteudo += "Etapas de Produção:\n";
         for (const etapa of this.etapas) {
-            conteudo += `${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n\n`;
+            conteudo += `${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n`;
         }
 
         conteudo += "Peças Utilizadas:\n";
         for (const peca of this.pecasUtilizadas) {
-            conteudo += `${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n\n`;
+            conteudo += `${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n`;
         }
 
         conteudo += "Testes Realizados:\n";
         for (const teste of this.testes) {
-            conteudo += `Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n\n`;
+            conteudo += `Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n`;
         }
 
         conteudo += `Gerado em: ${new Date().toLocaleDateString()}`;
