@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Funcionario {
-    constructor(id, funNome, telefone, endereco, usuario, senha, permicao) {
+    constructor(id, nome, telefone, endereco, usuario, senha, permissao) {
         this.id = id;
-        this.funNome = funNome;
+        this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.usuario = usuario;
         this.senha = senha;
-        this.permicao = permicao;
+        this.permissao = permissao;
     }
     getId() {
         return this.id;
     }
     getNome() {
-        return this.funNome;
+        return this.nome;
     }
     getTelefone() {
         return this.telefone;
@@ -22,8 +22,11 @@ class Funcionario {
     getEndereco() {
         return this.endereco;
     }
-    getPermicao() {
-        return this.permicao;
+    getPermissao() {
+        return this.permissao;
+    }
+    autenticar(usuario, senha) {
+        return this.usuario === usuario && this.senha === senha;
     }
 }
 exports.default = Funcionario;

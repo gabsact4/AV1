@@ -2,44 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const enums_1 = require("./enums");
 class Peca {
-    constructor(PecasNome, PecasTipo, Fornecedro, Status = enums_1.StatusPeca.PRONTA, funcionarioRegistro = null, dataRegistro = null) {
-        this.PecasNome = PecasNome;
-        this.PecasTipo = PecasTipo;
-        this.Fornecedro = Fornecedro;
-        this.Status = Status;
-        this.funcionarioRegistro = funcionarioRegistro;
-        this.dataRegistro = dataRegistro;
+    constructor(nome, tipo, fornecedor, status = enums_1.StatusPeca.EM_PRODUCAO) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.fornecedor = fornecedor;
+        this.status = status;
     }
     getNome() {
-        return this.PecasNome;
+        return this.nome;
     }
     getTipo() {
-        return this.PecasTipo;
+        return this.tipo;
     }
     getFornecedor() {
-        return this.Fornecedro;
+        return this.fornecedor;
     }
     getStatus() {
-        return this.Status;
+        return this.status;
     }
-    getFuncionarioRegistro() {
-        return this.funcionarioRegistro;
-    }
-    getDataRegistro() {
-        return this.dataRegistro;
+    setStatus(status) {
+        this.status = status;
     }
     registrarPeca(funcionario) {
-        const permissao = funcionario.getPermicao();
-        if (permissao === enums_1.NivelPermissao.ENGENHEIRO || permissao === enums_1.NivelPermissao.ADMINISTRADOR) {
-            this.funcionarioRegistro = funcionario;
-            this.dataRegistro = new Date();
-            console.log(`\n Peça '${this.PecasNome}' registrada por ${funcionario.getNome()} em ${this.dataRegistro.toLocaleDateString()}.`);
-            return true;
-        }
-        else {
-            console.log(`\n Erro de Permissão: O funcionário ${funcionario.getNome()} (${permissao}) não tem permissão para registrar peças.`);
-            return false;
-        }
+        return true;
     }
 }
 exports.default = Peca;

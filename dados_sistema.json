@@ -1,0 +1,39 @@
+{
+  "aeronaves": [
+    {
+      "codigo": 1,
+      "modelo": "12",
+      "tipo": "Comercial",
+      "capacidade": 1200,
+      "alcance": 1500,
+      "pecas": [],
+      "etapas": [],
+      "testes": []
+    }
+  ],
+  "pecas": [
+    {
+      "nome": "pao",
+      "tipo": "Nacional",
+      "fornecedor": "didi",
+      "status": "Em Transporte"
+    }
+  ],
+  "etapas": [
+    {
+      "nome": "montar",
+      "prazo": 15,
+      "status": "Concluída"
+    }
+  ],
+  "testes": [],
+  "funcionarios": [
+    {
+      "id": 1,
+      "nome": "Admin",
+      "usuario": "***",
+      "senha": "***",
+      "permissao": "Administrador"
+    }
+  ]
+}

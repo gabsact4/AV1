@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = require("fs");
 class Relatorio {
     constructor(aeronave, cliente, dataEntrega, etapas, testes, pecasUtilizadas, responsavel) {
         this.aeronave = aeronave;
@@ -11,36 +12,31 @@ class Relatorio {
         this.responsavel = responsavel;
     }
     gerarRelatorioCompleto() {
-        var _a, _b;
-        console.log("--------------------- Relatorio -------------------------------------\n");
-        console.log(`Aeronave: ${this.aeronave.value}\n`);
-        console.log(`Cliente: ${this.cliente}\n`);
-        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}\n`);
-        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n`);
-        console.log("Etapas de Produção:");
-        for (const p of this.etapas) {
-            console.log(`${p.nome} Prazo: ${p.prazo} dias Status: ${p.status}\n`);
+        let conteudo = "--------------------- Relatório -------------------------------------\n\n";
+        conteudo += `Aeronave: ${this.aeronave.getDetalhes()}\n\n`;
+        conteudo += `Cliente: ${this.cliente}\n\n`;
+        conteudo += `Entrega: ${this.dataEntrega.toLocaleDateString()}\n\n`;
+        conteudo += `Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n\n`;
+        conteudo += "Etapas de Produção:\n";
+        for (const etapa of this.etapas) {
+            conteudo += `${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n\n`;
         }
-        console.log("Peças Utilizadas:");
+        conteudo += "Peças Utilizadas:\n";
         for (const peca of this.pecasUtilizadas) {
-            // Adicionado as novas informações de registro da peça
-            const funcRegistro = ((_a = peca.getFuncionarioRegistro()) === null || _a === void 0 ? void 0 : _a.getNome()) || "N/A";
-            const dataRegistro = ((_b = peca.getDataRegistro()) === null || _b === void 0 ? void 0 : _b.toLocaleDateString()) || "N/A";
-            console.log(`
-                ${peca.getNome()} Tipo: ${peca.getTipo()} 
-                Fornecedor: ${peca.getFornecedor()} 
-                Status: ${peca.getStatus()}
-                Registrado por: ${funcRegistro} em: ${dataRegistro}
-            `);
+            conteudo += `${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n\n`;
         }
-        console.log("\nTestes Realizados:");
-        for (const t of this.testes) {
-            console.log(`Tipo: ${t.getTesteTipo()} Resultado: ${t.getResultado()}\n`);
+        conteudo += "Testes Realizados:\n";
+        for (const teste of this.testes) {
+            conteudo += `Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n\n`;
         }
-        console.log(`Gerado em: ${new Date().toLocaleDateString()}`);
+        conteudo += `Gerado em: ${new Date().toLocaleDateString()}`;
+        const nomeArquivo = `relatorio_${this.cliente}_${new Date().getTime()}.txt`;
+        (0, fs_1.writeFileSync)(nomeArquivo, conteudo, 'utf8');
+        console.log(`Relatório salvo como: ${nomeArquivo}`);
+        console.log(conteudo);
     }
     getResumo() {
-        return `Aeronave: ${this.aeronave.value}\n Cliente: ${this.cliente} \n Entrega: ${this.dataEntrega.toLocaleDateString()} \n ${this.etapas.length} \n etapas ${this.testes.length} testes`;
+        return `Aeronave: ${this.aeronave.getDetalhes()}\n Cliente: ${this.cliente} \n Entrega: ${this.dataEntrega.toLocaleDateString()} \n ${this.etapas.length} etapas \n ${this.testes.length} testes`;
     }
 }
 exports.default = Relatorio;

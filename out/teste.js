@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Teste {
-    constructor(testeTipo, resultado) {
-        this.testeTipo = testeTipo;
+    constructor(tipo, resultado) {
+        this.tipo = tipo;
         this.resultado = resultado;
     }
-    getTesteTipo() {
-        return this.testeTipo;
+    getTipo() {
+        return this.tipo;
     }
     getResultado() {
         return this.resultado;

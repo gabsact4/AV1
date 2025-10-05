@@ -1,3 +1,4 @@
+import { writeFileSync } from 'fs';
 import Aeronave from "./nave";
 import Etapa from "./etapa";
 import Teste from "./teste";
@@ -16,29 +17,34 @@ export default class Relatorio {
     ) {}
 
     public gerarRelatorioCompleto() {
-        console.log("--------------------- Relatório -------------------------------------\n");
-        console.log(`Aeronave: ${this.aeronave.getDetalhes()}\n`);
-        console.log(`Cliente: ${this.cliente}\n`);
-        console.log(`Entrega: ${this.dataEntrega.toLocaleDateString()}\n`);
-        console.log(`Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n`);
+        let conteudo = "--------------------- Relatório -------------------------------------\n\n";
+        conteudo += `Aeronave: ${this.aeronave.getDetalhes()}\n\n`;
+        conteudo += `Cliente: ${this.cliente}\n\n`;
+        conteudo += `Entrega: ${this.dataEntrega.toLocaleDateString()}\n\n`;
+        conteudo += `Responsável: ${this.responsavel.getNome()} (ID: ${this.responsavel.getId()})\n\n`;
 
-        console.log("Etapas de Produção:");
+        conteudo += "Etapas de Produção:\n";
         for (const etapa of this.etapas) {
-            console.log(`${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n`);
+            conteudo += `${etapa.nome} Prazo: ${etapa.prazo} dias Status: ${etapa.status}\n\n`;
         }
 
-        console.log("Peças Utilizadas:");
+        conteudo += "Peças Utilizadas:\n";
         for (const peca of this.pecasUtilizadas) {
-            console.log(`${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n`);
+            conteudo += `${peca.getNome()} Tipo: ${peca.getTipo()} \n Fornecedor: ${peca.getFornecedor()} \n Status: ${peca.getStatus()}\n\n`;
         }
 
-        console.log("Testes Realizados:");
+        conteudo += "Testes Realizados:\n";
         for (const teste of this.testes) {
-            // CORREÇÃO: Usando getTipo() e getResultado()
-            console.log(`Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n`);
+            conteudo += `Tipo: ${teste.getTipo()} Resultado: ${teste.getResultado()}\n\n`;
         }
 
-        console.log(`Gerado em: ${new Date().toLocaleDateString()}`);
+        conteudo += `Gerado em: ${new Date().toLocaleDateString()}`;
+
+        const nomeArquivo = `relatorio_${this.cliente}_${new Date().getTime()}.txt`;
+        writeFileSync(nomeArquivo, conteudo, 'utf8');
+        console.log(`Relatório salvo como: ${nomeArquivo}`);
+        
+        console.log(conteudo);
     }
 
     public getResumo(): string {
