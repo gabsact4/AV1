@@ -12,7 +12,7 @@ export default class SistemaProducao {
     private pecas: Peca[] = [];
     private etapas: Etapa[] = [];
     public funcionarios: Funcionario[] = [
-        new Funcionario(1, "Admin", "11999999999", "Endereço Admin", "admin", "123", NivelPermissao.ADMINISTRADOR)
+        new Funcionario(1, "Silvio Santos", "11999999999", "Av.Brasil", "admin", "123", NivelPermissao.ADMINISTRADOR)
     ];
     private testes: Teste[] = [];
 
