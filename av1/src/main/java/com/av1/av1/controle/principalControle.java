@@ -8,6 +8,6 @@ public class principalControle {
     
     @GetMapping("/")
     public String Home() {
-        return "Em verdade, para nós não existe \"destino\". Somos aqueles que, embebidos em medo e ignorância, perdem o passo e caem no rio lamacento que chamam de \"destino\".";
+        return ". -- / ...- . .-. -.. .- -.. . --..-- / .--. .- .-. .- / -. ... / -. --- / . -..- .. ... - . / -.. . ... - .. -. --- .-.-.- / ... --- -- --- ... / .- --.- ..- . .-.. . ... / --.- ..- . --..-- / . -- -... . -... .. -.. --- ... / . -- / -- . -.. --- / . / .. --. -. --- .-. -. -.-. .. .- --..-- / .--. . .-. -.. . -- / --- / .--. .- ... ... --- / . / -.-. .- . -- / -. --- / .-. .. --- / .-.. .- -- .- -.-. . -. - --- / --.- ..- . / -.-. .... .- -- .- -- / -.. . / -.. . ... - .. -. --- .-.-.-";
     }
 }
